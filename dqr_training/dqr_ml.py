@@ -29,9 +29,9 @@ vis_edate='20171231'
 min_max=0
 n_est=25
 depth=3
-ndays=10
-max_bad=10
-skip_dqrs=0
+ndays=3
+max_bad=3
+skip_dqrs=1
 period=15
 minp=5
 
@@ -51,6 +51,7 @@ def visualizeResults(ds, varname, fig_name, score, fi):
     fi_name = ['data', 'std', 'max', 'min']
     print('Reading in: ', ds, ' ', varname, ' from ', sdate, '-', edate)
     data, flag_2d, sample_time = getTrainingSet(ds, varname, [sdate], [edate], 1)
+    print(data)
     site = ds[:3]
     write_dir = os.path.join('./', 'results', site)
     ml_file = os.path.join(write_dir, ds + '_' + varname + '.p')
@@ -104,7 +105,6 @@ def getTrainingSet(ds, varname, sdate, edate, visualize):
     site = ds[0:3]
     files = glob.glob(os.path.join('/data', 'archive', site, ds, ds + '*'))
     files.sort()
-    print(files)
     dates = np.array([int(f.split('.')[-3]) for f in files])
     for i in range(len(sdate)):
         print('   ', sdate[i], '-', edate[i])
@@ -121,8 +121,8 @@ def getTrainingSet(ds, varname, sdate, edate, visualize):
            print('Error')
            continue
 
-        obj = obj.dropna(dim='time')
-        data = obj[varname].values
+        obj = obj[varname].dropna(dim='time')
+        data = obj.values
         stime = obj['time'].values
         print('      Success')
         mask1 = data <= -9999.
@@ -144,7 +144,6 @@ def getTrainingSet(ds, varname, sdate, edate, visualize):
             data = data[~mask]
             stime = stime[~mask]
         train_data += data.tolist()
-        #train_time += stime.tolist()
         train_time.append(stime)
         #train_data.append(data.tolist())
         #train_time.append(stime.tolist())
@@ -248,12 +247,10 @@ if __name__ == '__main__':
         ct1 += 1
    
     good_train, flag_2d, good_time = getTrainingSet(ds, varname, good_sdate, good_sdate, 0)
-
     glen = np.shape(good_train)[0]
     if (glen == 0):
         glen = len(good_train)
     glabel = np.full(glen, 1)
-
     label = np.concatenate((glabel, blabel))
     training = np.concatenate((good_train, bad_train), axis=0)
 
