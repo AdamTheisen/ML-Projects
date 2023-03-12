@@ -19,7 +19,7 @@ from datetime import datetime
 import random
 
 ds='sgp30ebbrE13.b1'
-varname='net_radiation'
+varname='latent_heat_flux' # sensible_heat_flux net_radiation 
 vis_sdate='20220101'
 vis_edate='20221231'
 min_max=0
