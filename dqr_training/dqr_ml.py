@@ -20,7 +20,7 @@ import random
 
 ds='sgp30ebbrE13.b1'
 varname='net_radiation'
-vis_sdate='2022001'
+vis_sdate='20220101'
 vis_edate='20221231'
 min_max=0
 n_est=25
@@ -58,7 +58,6 @@ def visualizeResults(ds, varname, fig_name, score, fi):
 
     nf = len(fi)
     fig, ax = plt.subplots(nrows=nf, ncols=1, figsize=(12, 12))
-    nf = 1
     ms = 8.
     ls = 1.5
     sample_time = np.array(sample_time)
@@ -112,7 +111,7 @@ def getTrainingSet(ds, varname, sdate, edate, visualize):
         idx = np.where((dates >= int(sdate[i])) & (dates <= int(edate[i])))[0]
         read_files  = list(np.array(files)[idx])
         try:
-            obj = act.io.armfiles.read_netcdf(read_files)
+            obj = act.io.armfiles.read_netcdf(read_files, parallel=True)
         except:
            print('Error')
            continue
