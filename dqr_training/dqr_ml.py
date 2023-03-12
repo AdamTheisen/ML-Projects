@@ -18,14 +18,14 @@ import glob
 from datetime import datetime
 import random
 
-#ds='sgp30ebbrE13.b1'
-#varname='sensible_heat_flux' # sensible_heat_flux net_radiation 
-ds = 'sgpmetE13.b1'
-varname = 'temp_mean'
-ds = 'sgp30ecorE14.b1'
-varname = 'fc'
-vis_sdate='20190101'
-vis_edate='20191231'
+ds='sgp30ebbrE13.b1'
+varname='sensible_heat_flux' # sensible_heat_flux net_radiation 
+#ds = 'sgpmetE13.b1'
+#varname = 'temp_mean'
+#ds = 'sgp30ecorE14.b1'
+#varname = 'fc'
+vis_sdate='20220101'
+vis_edate='20221231'
 min_max=0
 n_est=25
 depth=3
