@@ -104,6 +104,7 @@ def getTrainingSet(ds, varname, sdate, edate, visualize):
     site = ds[0:3]
     files = glob.glob(os.path.join('/data', 'archive', site, ds, ds + '*'))
     files.sort()
+    print(files)
     dates = np.array([int(f.split('.')[-3]) for f in files])
     for i in range(len(sdate)):
         print('   ', sdate[i], '-', edate[i])
