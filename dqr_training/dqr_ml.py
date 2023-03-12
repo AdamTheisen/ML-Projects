@@ -157,8 +157,9 @@ def getTrainingSet(ds, varname, sdate, edate, visualize):
         train_max = df.rolling(period, min_periods=minp, center=True).max()
 
     df['std'] = train_std
-    df['min'] = train_min
-    df['max'] = train_max
+    if min_max == 1:
+        df['min'] = train_min
+        df['max'] = train_max
     #train=[]
     #if (min_max == 0):
     #    train = np.vstack((np.transpose(train_data), np.transpose(train_std)))
