@@ -27,8 +27,8 @@ varname = 'fc'
 vis_sdate='20170101'
 vis_edate='20171231'
 min_max=0
-n_est=10
-depth=3
+n_est=25
+depth=2
 ndays=10
 max_bad=1
 skip_dqrs=0
@@ -198,7 +198,7 @@ if __name__ == '__main__':
             sdate.append(time.strftime('%Y%m%d', time.gmtime(int(dummy[0]))))
             edate.append(time.strftime('%Y%m%d', time.gmtime(int(dummy[1]))))
             ct+=1
-            if (ct > max_bad):
+            if (ct >= max_bad):
                 break
 
     #####Get all DQR query####
@@ -263,9 +263,6 @@ if __name__ == '__main__':
     print('Training ML Algorithm....')
     X_train, X_test, y_train, y_test = train_test_split(training, label)
     #knn = KNeighborsClassifier(n_neighbors = 3)
-    #if flag_2d > 0:
-    #   n_est=15
-    #   depth=3
     knn = RandomForestClassifier(max_depth=depth, random_state=0, n_estimators=n_est)
     knn.fit(X_train, y_train)
 
