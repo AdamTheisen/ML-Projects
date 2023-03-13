@@ -32,8 +32,8 @@ depth=3
 ndays=10
 max_bad=25
 skip_dqrs=0
-period=15
-minp=5
+period=10
+minp=1
 
 def fileExist(ds, date):
     site = ds[:3]
