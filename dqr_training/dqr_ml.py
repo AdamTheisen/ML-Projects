@@ -28,7 +28,7 @@ vis_sdate='20170101'
 vis_edate='20171231'
 min_max=0
 n_est=25
-depth=3
+depth=2
 ndays=10
 max_bad=2
 skip_dqrs=0
@@ -61,7 +61,7 @@ def visualizeResults(ds, varname, fig_name, score, fi):
     result = ml.predict(data)
 
     nf = len(fi)
-    fig, ax = plt.subplots(nrows=nf, ncols=1, figsize=(12, 12))
+    fig, ax = plt.subplots(nrows=(nf + 1), ncols=1, figsize=(12, 12))
     ms = 8.
     ls = 1.5
     sample_time = np.array(sample_time)
@@ -82,6 +82,12 @@ def visualizeResults(ds, varname, fig_name, score, fi):
 
         ax[i].plot_date(new_time, new_data, '.', color='r', markersize=ms)
 
+    idx = (result == 1)
+    index = np.where(idx)
+    sample_data = np.array(data[fi_name[i]])
+    new_time = np.reshape(sample_time[0, index], len(index[0]))
+    new_data = sample_data[index]
+    ax[-1].plot_date(new_time, new_data)
     date = time.strftime("%Y%m%d")
     fdir = './images/' + date + '/'
     try:
