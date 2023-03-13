@@ -27,11 +27,11 @@ varname = 'fc'
 vis_sdate='20170101'
 vis_edate='20171231'
 min_max=0
-n_est=25
+n_est=10
 depth=3
-ndays=3
-max_bad=3
-skip_dqrs=1
+ndays=10
+max_bad=25
+skip_dqrs=0
 period=15
 minp=5
 
@@ -51,7 +51,6 @@ def visualizeResults(ds, varname, fig_name, score, fi):
     fi_name = ['data', 'std', 'max', 'min']
     print('Reading in: ', ds, ' ', varname, ' from ', sdate, '-', edate)
     data, flag_2d, sample_time = getTrainingSet(ds, varname, [sdate], [edate], 1)
-    print(data)
     site = ds[:3]
     write_dir = os.path.join('./', 'results', site)
     ml_file = os.path.join(write_dir, ds + '_' + varname + '.p')
@@ -271,7 +270,7 @@ if __name__ == '__main__':
     knn.fit(X_train, y_train)
 
     score = knn.score(X_test, y_test)
-    print(score)
+    print('Score: ', score)
     fi = knn.feature_importances_
 
     site = ds[:3]
