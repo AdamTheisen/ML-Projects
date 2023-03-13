@@ -84,7 +84,7 @@ def visualizeResults(ds, varname, fig_name, score, fi):
 
     idx = (result == 1)
     index = np.where(idx)
-    sample_data = np.array(data[fi_name[i]])
+    sample_data = np.array(data['data'])
     new_time = np.reshape(sample_time[0, index], len(index[0]))
     new_data = sample_data[index]
     ax[-1].plot_date(new_time, new_data)
