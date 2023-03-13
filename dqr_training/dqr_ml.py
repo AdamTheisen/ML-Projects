@@ -24,8 +24,8 @@ varname='sensible_heat_flux' # sensible_heat_flux net_radiation
 #varname = 'temp_mean'
 ds = 'sgp30ecorE14.b1'
 varname = 'fc'
-vis_sdate='20170101'
-vis_edate='20171231'
+vis_sdate='20190101'
+vis_edate='20191231'
 min_max=0
 n_est=25
 depth=3
@@ -57,7 +57,6 @@ def visualizeResults(ds, varname, fig_name, score, fi):
 
     with (open(ml_file, "rb")) as openfile:
         ml = pickle.load(openfile)
-
     result = ml.predict(data)
 
     nf = len(fi)
