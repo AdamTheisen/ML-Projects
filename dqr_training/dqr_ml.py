@@ -28,7 +28,7 @@ min_max=0
 n_est=25
 depth=3
 ndays=10
-max_bad=10
+max_bad=3
 skip_dqrs=0
 period=10
 minp=1
@@ -206,8 +206,7 @@ if __name__ == '__main__':
                 break
 
     #####Get all DQR query####
-    #url = ''.join(("http://www.archive.arm.gov/dqrws/ARMDQR?datastream=", ds, "&varname=", varname, '&searchmetric=', 'incorrect,suspect,missing'))
-    url = ''.join(("http://www.archive.arm.gov/dqrws/ARMDQR?datastream=", ds, "&varname=", varname, '&searchmetric=', 'incorrect'))
+    url = ''.join(("http://www.archive.arm.gov/dqrws/ARMDQR?datastream=", ds, "&varname=", varname, '&searchmetric=', 'incorrect,suspect,missing'))
     response = urlopen(url)
     all_dqr_sdate = []
     all_dqr_edate = []
