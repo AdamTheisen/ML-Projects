@@ -206,7 +206,8 @@ if __name__ == '__main__':
                 break
 
     #####Get all DQR query####
-    url = ''.join(("http://www.archive.arm.gov/dqrws/ARMDQR?datastream=", ds, "&varname=", varname, '&searchmetric=', 'incorrect,suspect,missing'))
+    #url = ''.join(("http://www.archive.arm.gov/dqrws/ARMDQR?datastream=", ds, "&varname=", varname, '&searchmetric=', 'incorrect,suspect,missing'))
+    url = ''.join(("http://www.archive.arm.gov/dqrws/ARMDQR?datastream=", ds, "&varname=", varname, '&searchmetric=', 'incorrect'))
     response = urlopen(url)
     all_dqr_sdate = []
     all_dqr_edate = []
