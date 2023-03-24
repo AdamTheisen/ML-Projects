@@ -22,7 +22,7 @@ import random
 #varname = 'fc'
 ds = 'sgpmfrsrE13.b1'
 varname = 'diffuse_hemisp_narrowband_filter4'
-vis_sdate='20200101'
+vis_sdate='20201201'
 vis_edate='20201231'
 min_max=0
 n_est=25
